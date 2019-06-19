@@ -16,3 +16,21 @@ This is a template app that contains the following:
 ## Development
 To start the server, run:
 +  `docker-compose up --build`
+
+
+## Todos
+- Send verbose column names to display on frontend
+
+- Loading commits directly from the table vs first fetching from the SVC apis is a little clunky. The `reload` parameter, which tells the Django api endpoint to reload from the Bitbucket/Github apis, could be abused. Ideally the Django api endpoint accessed from Vue would only fetch from the table directly, and then we'd have some other process running in the backend to periodically update the commit data to the tables, ie once per minute.
+
+- When loading commits from the Bitbucket/Github apis, we should check by date and only grab the new commits since the last update. Also we need to deal with pagination, currently only the first pages are fetched.
+
+- Refactor the vue commit tables and relevant logic to be generated from one component (DRY).
+
+- Refactor Bitbucket and Github views to DRY, and extract api logic out of view classes.
+
+- Move constants in views to settings, and change URIs and endpoints to take arbitrary usernames and repos.
+
+- Frontend table formatting should be improved.
+
+- Started working on author filtering, unfinished
